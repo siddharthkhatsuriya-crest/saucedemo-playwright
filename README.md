@@ -1,26 +1,19 @@
 # SauceDemo Playwright Tests
 
-This project contains a Playwright + TypeScript UI test suite for the SauceDemo login flow.
+Small Playwright + TypeScript project for automating the SauceDemo login flow.
 
-## What this test covers
+## Project overview
 
-- Opens `https://www.saucedemo.com`
-- Logs in with the standard SauceDemo user
-- Verifies the page title is `Swag Labs`
-- Verifies the user lands on `/inventory.html`
-
-## Tech stack
-
-- Node.js
-- TypeScript
-- Playwright Test
+- Uses Playwright Test with TypeScript
+- Contains a login setup test for the SauceDemo standard user
+- Saves authenticated browser state to `.auth/state.json` after login so future authenticated tests can reuse it
 
 ## Prerequisites
 
 - Node.js 18 or later
 - npm
 
-## Project setup
+## Setup
 
 1. Clone the repository:
 
@@ -41,17 +34,21 @@ This project contains a Playwright + TypeScript UI test suite for the SauceDemo 
    npm run install:browsers
    ```
 
-## Run the tests
+## Commands
 
-Run the full suite:
+Run the test suite:
 
 ```bash
 npm test
 ```
 
-## View the HTML report
+Run the TypeScript compiler check:
 
-After a test run, open the Playwright report with:
+```bash
+npm run type-check
+```
+
+Open the Playwright HTML report after a run:
 
 ```bash
 npm run report
@@ -59,7 +56,5 @@ npm run report
 
 ## Notes
 
-- The base URL is configured in `playwright.config.ts`.
-- `getByTestId()` is configured to use the SauceDemo `data-test` attribute.
-- Login credentials live in `src/auth/user.ts`.
-- Screenshots and videos are kept on failure to help with debugging.
+- The login setup test writes auth state to `.auth/state.json`.
+- `.auth/`, `playwright-report/`, and `test-results/` are generated locally and ignored by git.
