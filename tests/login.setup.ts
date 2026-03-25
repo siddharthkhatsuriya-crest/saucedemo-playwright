@@ -1,13 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../src/fixtures/fixtures'
 import { LoginPage } from '../src/page/loginpage';
 import { standardUser } from '../src/auth/user';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
-const statefile = path.resolve(__dirname, '../.auth/state.json');
+const statefile = path.resolve('.auth/state.json');
 
-test('Login Page', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test('Login Page', async ({ page, loginPage }) => {
     await loginPage.goto();
     await loginPage.login(standardUser.username, standardUser.password);
     await expect(page).toHaveTitle('Swag Labs'); 
