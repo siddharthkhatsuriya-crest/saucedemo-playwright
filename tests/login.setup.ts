@@ -9,7 +9,7 @@ const statefile = path.resolve('.auth/state.json');
 test('Login Page', async ({ page, loginPage }) => {
     await loginPage.goto();
     await loginPage.login(standardUser.username, standardUser.password);
-    await expect(page).toHaveTitle('Swag Labs'); 
+    await loginPage.expectLoaded();
     await expect(page).toHaveURL(/\/inventory\.html$/); // Checking login was successful
 
     await fs.mkdir(path.dirname(statefile), { recursive: true });

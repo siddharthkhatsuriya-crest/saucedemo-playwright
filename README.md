@@ -1,12 +1,13 @@
 # SauceDemo Playwright Tests
 
-Small Playwright + TypeScript project for automating the SauceDemo login flow.
+Small Playwright + TypeScript project for automating core SauceDemo user flows.
 
 ## Project overview
 
 - Uses Playwright Test with TypeScript
-- Contains a login setup test for the SauceDemo standard user
-- Saves authenticated browser state to `.auth/state.json` after login so future authenticated tests can reuse it
+- Uses page objects and shared fixtures
+- Includes a login setup flow and an authenticated cart test
+- Saves authenticated browser state to `.auth/state.json` so dependent tests can reuse it
 
 ## Prerequisites
 
@@ -42,6 +43,8 @@ Run the test suite:
 npm test
 ```
 
+The suite runs the `setup` project first to create auth state, then runs the authenticated `chromium` project.
+
 Run the TypeScript compiler check:
 
 ```bash
@@ -57,4 +60,5 @@ npm run report
 ## Notes
 
 - The login setup test writes auth state to `.auth/state.json`.
+- The cart test reuses that stored session through the Playwright project dependency setup.
 - `.auth/`, `playwright-report/`, and `test-results/` are generated locally and ignored by git.

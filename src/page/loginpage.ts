@@ -19,6 +19,10 @@ class LoginPage extends BasePage {
         await this.passwordInput.fill(password);
         await this.loginButton.click(); 
     }
+
+    async expectLoaded(): Promise<void> {
+        await expect(this.page).toHaveTitle('Swag Labs');
+    }
 }
 
 export { LoginPage };
