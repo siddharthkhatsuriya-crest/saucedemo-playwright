@@ -1,5 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
+const authFile = '.auth/state.json';
+
 export default defineConfig({
   testDir: './tests',
   timeout: 15 * 1000,
@@ -17,6 +19,12 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
+    },
+    {
+      name: 'chromium',
+      dependencies: ['setup'],
+      use: { browserName: 'chromium', storageState: authFile },
+
     }
   ],
 });
